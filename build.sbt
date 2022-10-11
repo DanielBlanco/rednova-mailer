@@ -66,3 +66,13 @@ lazy val `mailer-aws-ses` = project
     Test / parallelExecution := false,
     Test / fork              := true
   )
+
+lazy val `mailer-examples` = project
+  .in(file("examples"))
+  .dependsOn(`mailer-core`, `mailer-aws-ses`)
+  .settings(noPublish)
+  .settings(
+    name                     := "mailer-examples",
+    Test / parallelExecution := false,
+    Test / fork              := true
+  )

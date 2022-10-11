@@ -35,18 +35,9 @@ trait SesSpec extends ZIOSpec[SpecEnv]:
       mock.Expectation.valueF(_ => DUMMY_RESPONSE)
     )
 
-  override val bootstrap =
-    ZLayer
-      .make[SpecEnv](
-        // NettyHttpClient.default,
-        // AwsConfig.default,
-        // SpecConfig.layer,
-        // SesV2.live,
-        // SesV2Mock.compose,
-        // .SendEmail(hasKey("changos"))
-        // .pipe(ZLayer.succeed),
-        sendEmailMock,
-        SesMailer.layer
-      )
+  override val bootstrap = ZLayer.make[SpecEnv](
+    sendEmailMock,
+    SesMailer.layer
+  )
 
   def spec: Spec[SpecEnv, Any]
