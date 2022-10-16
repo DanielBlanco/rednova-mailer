@@ -61,7 +61,7 @@ lazy val `mailer-aws-ses` = project
   .dependsOn(`mailer-core`)
   .settings(commonSettings)
   .settings(
-    name                     := "mailer-asw-ses",
+    name                     := "mailer-aws-ses",
     libraryDependencies     ++= Dependencies.awsSes,
     Test / parallelExecution := false,
     Test / fork              := true
