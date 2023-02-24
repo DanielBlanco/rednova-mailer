@@ -27,9 +27,7 @@ object Main extends ZIOAppDefault:
       _   <- Console.printLine(s"Response ID: $id")
     yield ()
 
-  final val recipients = NonEmptyChunk(
-    "daniel.blancorojas@gmail.com"
-  )
+  final val recipients = NonEmptyChunk("daniel.blanco@maildrop.cc")
 
   final val buildMail: Mail =
     Mailer
