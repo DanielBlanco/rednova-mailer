@@ -7,7 +7,9 @@ import zio.test.Assertion.*
 
 object ConsoleMailer extends Mailer:
 
-  def send(mail: Mail): IO[MailerException, MessageId] =
+  def send(
+      mail: Mail
+    ): IO[MailerException, MessageId] =
     Console
       .printLine(mail.toString)
       .mapError(e => MailerException(e.getMessage()))

@@ -7,7 +7,9 @@ import zio.config.syntax.*
 import zio.config.ConfigDescriptor.*
 import zio.config.typesafe.*
 
-case class SpecConfig(mailer: MailerConfig)
+case class SpecConfig(
+    mailer: MailerConfig
+  )
 case class MailerConfig(
     host: String,
     port: Int,
@@ -17,8 +19,8 @@ case class MailerConfig(
     user: Option[String],
     password: Option[String],
     timeout: Option[Int],
-    connectionTimeout: Option[Int]
-)
+    connectionTimeout: Option[Int],
+  )
 
 object SpecConfig:
 
@@ -42,6 +44,5 @@ object SpecConfig:
     ).to[MailerConfig]
 
   private val config: ConfigDescriptor[SpecConfig] =
-    (
-      nested("mailer")(mailer)
-    ).to[SpecConfig]
+    nested("mailer")(mailer)
+      .to[SpecConfig]

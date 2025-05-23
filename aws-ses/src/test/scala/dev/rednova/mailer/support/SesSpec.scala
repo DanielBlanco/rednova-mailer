@@ -30,14 +30,14 @@ trait SesSpec extends ZIOSpec[SpecEnv]:
       hasField(
         "fromEmailAddress",
         (r: SendEmailRequest) => r.fromEmailAddress.toOption,
-        isSome(equalTo(EmailAddress(TONY_EMAIL)))
+        isSome(equalTo(EmailAddress(TONY_EMAIL))),
       ),
-      mock.Expectation.valueF(_ => DUMMY_RESPONSE)
+      mock.Expectation.valueF(_ => DUMMY_RESPONSE),
     )
 
   override val bootstrap = ZLayer.make[SpecEnv](
     sendEmailMock,
-    SesMailer.layer
+    SesMailer.layer,
   )
 
   def spec: Spec[SpecEnv, Any]

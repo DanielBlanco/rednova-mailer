@@ -7,7 +7,7 @@ import zio.test.Assertion.*
 
 object SesMailerSpec extends SesSpec:
 
-  def spec = suite("SesMailerSpec")(tests: _*)
+  def spec = suite("SesMailerSpec")(tests*)
 
   def tests = Chunk(
     test("sends email") {

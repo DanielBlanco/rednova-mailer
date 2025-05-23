@@ -10,25 +10,41 @@ case class Mail(
     subject: Option[String] = None,
     bodyText: Option[String] = None,
     bodyHtml: Option[String] = None,
-    attachments: Option[NonEmptyChunk[MailAttachment]] = None
-):
+    attachments: Option[NonEmptyChunk[MailAttachment]] = None,
+  ):
 
-  def attachments(v: NonEmptyChunk[MailAttachment]): Mail =
+  def attachments(
+      v: NonEmptyChunk[MailAttachment]
+    ): Mail =
     copy(attachments = Some(v))
 
-  def bodyText(v: String): Mail = copy(bodyText = Some(v))
+  def bodyText(
+      v: String
+    ): Mail = copy(bodyText = Some(v))
 
-  def bodyHtml(v: String): Mail = copy(bodyHtml = Some(v))
+  def bodyHtml(
+      v: String
+    ): Mail = copy(bodyHtml = Some(v))
 
-  def bcc(v: NonEmptyChunk[String]): Mail = copy(bcc = Some(v))
+  def bcc(
+      v: NonEmptyChunk[String]
+    ): Mail = copy(bcc = Some(v))
 
-  def cc(v: NonEmptyChunk[String]): Mail = copy(cc = Some(v))
+  def cc(
+      v: NonEmptyChunk[String]
+    ): Mail = copy(cc = Some(v))
 
-  def from(v: String): Mail = copy(from = Some(v))
+  def from(
+      v: String
+    ): Mail = copy(from = Some(v))
 
-  def subject(v: String): Mail = copy(subject = Some(v))
+  def subject(
+      v: String
+    ): Mail = copy(subject = Some(v))
 
-  def to(v: NonEmptyChunk[String]): Mail = copy(to = Some(v))
+  def to(
+      v: NonEmptyChunk[String]
+    ): Mail = copy(to = Some(v))
 
   def send = Mailer.send(this)
 
@@ -44,16 +60,28 @@ case class Mail(
         |  attachments: ${attachments.fold("None")(prettyAttachments)}
         |""".stripMargin
 
-  private def prettyAttachments(attachments: NonEmptyChunk[MailAttachment]): String =
+  private def prettyAttachments(
+      attachments: NonEmptyChunk[MailAttachment]
+    ): String =
     attachments.map(_.name).mkString("\n")
 
 object Mail:
-  def bodyHtml(v: String) = apply(bodyHtml = Some(v))
+  def bodyHtml(
+      v: String
+    ) = apply(bodyHtml = Some(v))
 
-  def bodyText(v: String) = apply(bodyText = Some(v))
+  def bodyText(
+      v: String
+    ) = apply(bodyText = Some(v))
 
-  def from(v: String) = apply(from = Some(v))
+  def from(
+      v: String
+    ) = apply(from = Some(v))
 
-  def subject(v: String) = apply(subject = Some(v))
+  def subject(
+      v: String
+    ) = apply(subject = Some(v))
 
-  def to(v: NonEmptyChunk[String]) = apply(to = Some(v))
+  def to(
+      v: NonEmptyChunk[String]
+    ) = apply(to = Some(v))

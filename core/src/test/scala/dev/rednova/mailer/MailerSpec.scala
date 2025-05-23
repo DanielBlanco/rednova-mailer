@@ -7,7 +7,7 @@ import zio.test.Assertion.*
 
 object MailerSpec extends CoreSpec:
 
-  def spec = suite("MailerSpec")(tests: _*)
+  def spec = suite("MailerSpec")(tests*)
 
   def tests = Chunk(
     test("sends emails") {
@@ -15,6 +15,6 @@ object MailerSpec extends CoreSpec:
         id  <- Mailer.subject("test").bodyText("changos").send
         out <- TestConsole.output
       yield assertTrue(out(0).contains("subject: test")) &&
-        assert(out(0))(containsString("bodyText: changos"))
+      assert(out(0))(containsString("bodyText: changos"))
     }
   )
